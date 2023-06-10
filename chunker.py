@@ -1,14 +1,3 @@
-import lal
-
-
-
-# ANDERSON CHUNK:
-
-# “Here we loosen the definition of a chunk and consider any base-level
-# subtree a possible chunk defined by the following criteria: (i) the components
-# of a chunk are syntactically linked; (ii) there is only one level of dependency
-# (one head and its dependents); (iii) the components are continuous; and (iv) no
-# dependent within a chunk has a dependent outside the chunk.”
 
 
 class Chunker:
@@ -76,6 +65,13 @@ class Chunker:
         self._chunk_edges()
 
     def run_anderson(self):  # TODO: WRITE THIS CHUNKER
+        '''
+        “A chunk: any base-level subtree a possible chunk defined by the following criteria:
+        (i) the components of a chunk are syntactically linked;
+        (ii) there is only one level of dependency (one head and its dependents);
+        (iii) the components are continuous;
+        (iv) no dependent within a chunk has a dependent outside the chunk.”
+        '''
         pass
 
 
