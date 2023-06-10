@@ -25,6 +25,21 @@ class Chunker:
         else:
             print("Unsupported chunk type! Try \"Macutek\" or \"Anderson\"")
 
+    def _chunk_edges(self):
+        for chunk_id, chunk in self.chunks.items():
+
+            for word in chunk:
+                parent = self.sentence[word-1]  # remember the 0-indexing
+                parent_chunk = self.chunk_index[parent]
+                if parent not in chunk:
+                    self.chunk_edges[chunk_id] = parent_chunk
+
+    def _populate_chunk_index(self):
+        for chunk_id, chunk in self.chunks.items():
+            for word in chunk:
+                self.chunk_index[word] = chunk_id
+        self.chunk_index[0] = 0  # root chunk
+
     def run_macutek(self):
         '''
         MACUTEK CHUNK: Linear dependency segment definition
@@ -60,20 +75,8 @@ class Chunker:
         self._populate_chunk_index()
         self._chunk_edges()
 
-    def _chunk_edges(self):
-        for chunk_id, chunk in self.chunks.items():
-
-            for word in chunk:
-                parent = self.sentence[word-1]  # remember the 0-indexing
-                parent_chunk = self.chunk_index[parent]
-                if parent not in chunk:
-                    self.chunk_edges[chunk_id] = parent_chunk
-
-    def _populate_chunk_index(self):
-        for chunk_id, chunk in self.chunks.items():
-            for word in chunk:
-                self.chunk_index[word] = chunk_id
-        self.chunk_index[0] = 0  # root chunk
+    def run_anderson(self):  # TODO: WRITE THIS CHUNKER
+        pass
 
 
 sentence = [3, 1, 0, 3, 6, 4, 6]
